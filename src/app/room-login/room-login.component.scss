@@ -1,0 +1,9 @@
+@import "../../styles/variables";
+header {
+  height: 40px;
+  position: fixed;
+  top: 0;
+  width: 100px;
+  background-color: $color2;
+  color: $color5;
+}
