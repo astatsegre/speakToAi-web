@@ -1,9 +1,18 @@
 @import "../../styles/variables";
-header {
-  height: 40px;
-  position: fixed;
-  top: 0;
-  width: 100px;
-  background-color: $color2;
-  color: $color5;
+
+.room-login {
+  grid-area: l;
+  &__containter {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 200px 1fr;
+    grid-template-rows: 1fr 200px 1fr;
+    grid-template-areas:  ". . ."
+                          ". l ."
+                          ". . .";
+  }
+  &__input,
+  &__submit {
+    width: 100%
+  }
 }

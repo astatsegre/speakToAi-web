@@ -1,3 +1,15 @@
-<p>
-  room-login works!
-</p>
+<div class="container room-login__containter">
+  <div class="room-login">
+    <mat-form-field class="room-login__input">
+      <input matInput placeholder="Nickname" type="text">
+    </mat-form-field>
+    <mat-form-field class="room-login__input">
+      <mat-select placeholder="Room">
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="room-login__submit" mat-raised-button color="primary">Join</button>
+  </div>
+</div>

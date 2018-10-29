@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "styles/variables";
 @import "app/room-login/room-login.component";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-body {
+
+html, body {
+  height: 100%;
   margin: 0;
 }
