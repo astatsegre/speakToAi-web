@@ -5,11 +5,11 @@
     </mat-form-field>
     <mat-form-field class="room-login__input">
       <mat-select placeholder="Room">
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
+        <mat-option *ngFor="let room of roomList" [value]="room.roomSocketId">
+          {{room.roomSocketId}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button class="room-login__submit" mat-raised-button color="primary">Join</button>
+    <button class="room-login__submit" (click)="submit()" mat-raised-button color="primary">Join</button>
   </div>
 </div>
