@@ -24,6 +24,7 @@ export class RoomLoginComponent implements OnInit {
     });
   }
   public submit() {
+    this.roomService.connect();
     console.log('works');
   }
 

@@ -4,7 +4,8 @@ import {RoomLoginComponent} from './components/room-login/room-login.component';
 
 const routes: Routes = [
   { path: '', component: RoomLoginComponent},
-  {path: 'room-login', component: RoomLoginComponent}
+  {path: 'room-login', component: RoomLoginComponent},
+  {path: 'room/', component: RoomLoginComponent}
 ];
 
 @NgModule({

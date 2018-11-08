@@ -7,17 +7,15 @@ import { RoomLoginComponent } from './components/room-login/room-login.component
 import {MatButtonModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
-import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
-
-const config: SocketIoConfig = { url: 'https://localhost:3000/expand', options: {} };
+import { RoomComponent } from './components/room/room/room.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoomLoginComponent
+    RoomLoginComponent,
+    RoomComponent,
   ],
   imports: [
-    SocketIoModule.forRoot(config),
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
