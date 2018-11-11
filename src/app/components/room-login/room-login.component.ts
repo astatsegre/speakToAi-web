@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {RoomService} from '../../services/room.service';
 import {first} from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 interface IRoom {
   roomSocketId: string;
@@ -14,9 +16,10 @@ interface IRoom {
   styleUrls: ['./room-login.component.scss']
 })
 export class RoomLoginComponent implements OnInit {
+  @ViewChild('roomLogin')roomLogin: NgForm;
   public roomList: IRoom[];
 
-  constructor(private roomService: RoomService) { }
+  constructor(private roomService: RoomService, private router: Router) { }
 
   ngOnInit() {
     this.roomService.getRooms().pipe(first()).subscribe((roomList: {rooms: IRoom[]}) => {
@@ -24,8 +27,9 @@ export class RoomLoginComponent implements OnInit {
     });
   }
   public submit() {
-    this.roomService.connect();
-    console.log('works');
+    const name = this.roomLogin.value.name;
+    const room = this.roomLogin.value.room.split(' ').join('+');
+    this.router.navigate(['/room'], {queryParams: {name, room}});
   }
 
 }

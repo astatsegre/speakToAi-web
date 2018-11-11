@@ -1,15 +1,17 @@
 <div class="container room-login__containter">
   <div class="room-login">
-    <mat-form-field class="room-login__input">
-      <input matInput placeholder="Nickname" type="text">
-    </mat-form-field>
-    <mat-form-field class="room-login__input">
-      <mat-select placeholder="Room">
-        <mat-option *ngFor="let room of roomList" [value]="room.roomSocketId">
-          {{room.roomSocketId}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button class="room-login__submit" (click)="submit()" mat-raised-button color="primary">Join</button>
+    <form #roomLogin="ngForm">
+      <mat-form-field class="room-login__input">
+        <input matInput placeholder="Nickname" type="text" name="name" ngModel>
+      </mat-form-field>
+      <mat-form-field class="room-login__input">
+        <mat-select placeholder="Room" ngModel name="room">
+          <mat-option *ngFor="let room of roomList" [value]="room.roomSocketId">
+            {{room.roomSocketId}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="room-login__submit" (click)="submit()" mat-raised-button color="primary">Join</button>
+    </form>
   </div>
 </div>
