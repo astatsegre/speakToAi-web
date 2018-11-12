@@ -1,0 +1,13 @@
+@mixin header() {
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: $color2;
+  color: $color5;
+  padding-left: 10px;
+  padding-right: 10px;
+  z-index: 99999;
+}
