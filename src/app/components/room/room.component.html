@@ -1,14 +1,22 @@
-<div class="expand-info">
-  <mat-icon class="expand-info__menu">menu</mat-icon>
-  <div class="expand-info__short-instruction">
-    <span>Expand the </span><span>word </span><span class="expand-info__word-to-expand">{{wordToExpand}}</span>
+<div class="expand">
+  <div class="expand-info">
+    <mat-icon class="expand-info__menu">menu</mat-icon>
+    <div class="expand-info__short-instruction">
+      <span>Expand the </span><span>word </span><span class="expand-info__word-to-expand">{{wordToExpand}}</span>
+    </div>
+    <div class="expand-info__timer">02:00</div>
   </div>
-  <div class="expand-info__timer">02:00</div>
+  <div class="expand-chat">
+    <div *ngFor="let example of examples">
+      <p class="examples">
+        <span *ngFor="let word of example[0]">{{word}} </span>
+      </p>
+    </div>
+    <mat-form-field class="expand-chat__input">
+      <input matInput placeholder="Your expending" type="text" name="expanding" ngModel>
+    </mat-form-field>
+    <button class="expand-chat__btn" mat-raised-button color="primary">Send</button>
+  </div>
 </div>
-<p class="examples"></p>
-<mat-form-field>
-  <input matInput placeholder="Your expending" type="text" name="expanding" ngModel>
-</mat-form-field>
-<button mat-raised-button color="primary">Send</button>
 
 

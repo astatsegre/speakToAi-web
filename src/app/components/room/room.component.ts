@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RoomService} from '../../services/room.service';
+import {IExpand} from '../../interfaces/expand.interface';
 
 @Component({
   selector: 'app-room',
@@ -9,6 +10,7 @@ import {RoomService} from '../../services/room.service';
 })
 export class RoomComponent implements OnInit {
   public wordToExpand: string;
+  public examples: IExpand['examples'];
   private roomName = this.route.snapshot.queryParamMap.get('room');
   private playerName = this.route.snapshot.queryParamMap.get('name');
 
@@ -20,9 +22,12 @@ export class RoomComponent implements OnInit {
       return;
     }
     await this.roomService.connect(this.playerName, this.roomName);
-    this.roomService.onExpand().subscribe((response) => {
+    this.roomService.onExpand().subscribe((response: IExpand) => {
       this.wordToExpand = response.word;
-      console.log(response);
+      this.examples = response.examples;
+      response.examples.forEach((e) => {
+        console.log(1111, this.roomService.renderExpandSentence(e)); // rendering examples. See utils.js for details
+      });
     });
   }
 
