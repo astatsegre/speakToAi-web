@@ -26,6 +26,12 @@ export class RoomService {
       });
     });
   }
+  public validateExpand(expandTest: string) {
+
+  }
+  public sendExpand(text: string) {
+    this.socket.emit('expand', text);
+  }
   public decodePartOfSpeach (p: 'n'|'v'|'a'|'r'): 'noun'|'verb'|'adjective'|'adverb'  {
     switch (p) {
       case 'n':

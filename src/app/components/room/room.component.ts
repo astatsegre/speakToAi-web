@@ -30,5 +30,8 @@ export class RoomComponent implements OnInit {
       });
     });
   }
+  public expand(expandInput: HTMLInputElement) {
+    this.roomService.sendExpand(expandInput.value);
+  }
 
 }
