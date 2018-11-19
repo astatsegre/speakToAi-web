@@ -14,6 +14,9 @@ export class RoomComponent implements OnInit, OnDestroy {
   public wordToExpand: string;
   public examples: IExpand['examples'];
   public sentenceToGuess: string[];
+  public selectWordStart: number;
+  public selectWordEnd: number;
+  public selectedWordsIndexes = {};
   private $onExpand: Subscription;
   private $onGuess: Subscription;
   private roomName = this.route.snapshot.queryParamMap.get('room');
@@ -43,5 +46,36 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
   public expand(expandInput: HTMLInputElement) {
     this.roomService.sendExpand(expandInput.value);
+  }
+  public selectWord(index: number): void {
+    if (this.selectWordStart === undefined) {
+      this.selectWordStart = index;
+      this.selectedWordsIndexes[index] = true;
+    } else if (this.selectWordStart !== undefined && this.selectWordEnd === undefined) {
+      this.selectWordEnd = index;
+      for (let i = this.selectWordStart; i <= this.selectWordEnd; i++) {
+        this.selectedWordsIndexes[i] = true;
+      }
+    } else if (this.selectWordStart !== undefined && this.selectWordEnd !== undefined) {
+      this.selectWordStart = index;
+      this.selectWordEnd = undefined;
+      for (let i = 0; i < this.sentenceToGuess.length; i++) {
+        this.selectedWordsIndexes[i] = false;
+      }
+      this.selectedWordsIndexes[index] = true;
+    }
+  }
+  public guess(): void {
+    let arrayOfWordIndexes: number[] = [];
+    if (this.selectWordStart !== undefined && this.selectWordEnd !== undefined) {
+      for (let i = this.selectWordStart; i <= this.selectWordEnd; i++) {
+        arrayOfWordIndexes.push(i);
+      }
+    }
+    if (this.selectWordStart !== undefined && this.selectWordEnd === undefined) {
+      arrayOfWordIndexes = [this.selectWordStart];
+    }
+    if (this.selectWordStart === undefined && this.selectWordEnd === undefined) {return; }
+    this.roomService.sendGuess(arrayOfWordIndexes);
   }
 }

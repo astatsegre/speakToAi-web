@@ -27,6 +27,9 @@ export class RoomService {
   public sendExpand(text: string) {
     this.socket.emit('expand', text);
   }
+  public sendGuess(indexesOfWords: number[]): void {
+    this.socket.emit('guess', indexesOfWords);
+  }
   public decodePartOfSpeach (p: 'n'|'v'|'a'|'r'): 'noun'|'verb'|'adjective'|'adverb'  {
     switch (p) {
       case 'n':

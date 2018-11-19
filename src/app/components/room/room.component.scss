@@ -48,4 +48,14 @@
 .guess {
   font-size: $font-size-l;
   grid-area: e;
+  &__word {
+    cursor: pointer;
+    &:hover {
+      background-color: $color6;
+    }
+  }
+  &__btn {
+    margin-top: 50px;
+    width: 100%;
+  }
 }

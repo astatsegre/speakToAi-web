@@ -19,7 +19,11 @@
   </div>
   <div class="guess" *ngIf="currentStage === 1">
     <p>
-      <span *ngFor="let word of sentenceToGuess; index as i">{{word}} </span>
+      <span class="guess__word"
+            *ngFor="let word of sentenceToGuess; index as i"
+            (click)="selectWord(i)"
+            [ngClass]="{'expand__word-to-expand': selectedWordsIndexes[i]}">{{word}} </span>
     </p>
+    <button class="guess__btn" mat-raised-button color="primary" (click)="guess()">Submit!</button>
   </div>
 </div>
