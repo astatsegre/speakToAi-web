@@ -7,3 +7,9 @@ export interface IExpand {
   sense: string;
   word: string;
 }
+
+export interface IGuess {
+  first: boolean;
+  roundTime: number;
+  toGuess: string[];
+}

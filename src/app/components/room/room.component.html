@@ -1,22 +1,25 @@
-<div class="expand">
-  <div class="expand-info">
+<div class="room">
+  <div class="expand-info" *ngIf="currentStage === 0">
     <mat-icon class="expand-info__menu">menu</mat-icon>
     <div class="expand-info__short-instruction">
       <span>Expand the </span><span>word </span><span class="expand-info__word-to-expand">{{wordToExpand}}</span>
     </div>
     <div class="expand-info__timer">02:00</div>
   </div>
-  <div class="expand-chat">
+  <div class="expand" *ngIf="currentStage === 0">
     <div *ngFor="let example of examples; index as ii">
       <p class="examples">
-        <span *ngFor="let word of example[0]; index as i" [ngClass]="{'expand-chat__word-to-expand': i === examples[ii][2]}">{{word}} </span>
+        <span *ngFor="let word of example[0]; index as i" [ngClass]="{'expand__word-to-expand': i === examples[ii][2]}">{{word}} </span>
       </p>
     </div>
-    <mat-form-field class="expand-chat__input">
+    <mat-form-field class="expand__input">
       <input matInput placeholder="Your expending" type="text" name="expanding" ngModel #expandInput>
     </mat-form-field>
-    <button class="expand-chat__btn" mat-raised-button color="primary" (click)="expand(expandInput)">Send</button>
+    <button class="expand__btn" mat-raised-button color="primary" (click)="expand(expandInput)">Send</button>
+  </div>
+  <div class="guess" *ngIf="currentStage === 1">
+    <p>
+      <span *ngFor="let word of sentenceToGuess; index as i">{{word}} </span>
+    </p>
   </div>
 </div>
-
-

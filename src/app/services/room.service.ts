@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import * as io from 'socket.io-client';
-import {IExpand} from '../interfaces/expand.interface';
+import {IExpand, IGuess} from '../interfaces/expand.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +19,10 @@ export class RoomService {
     return this.http.get('https://localhost:3000/expand');
   }
   public onExpand(): Observable<IExpand> {
-    return new Observable((observer) => {
-      this.socket.on('expand', (data) => {
-        console.log('onExpand', data);
-        observer.next(data);
-      });
-    });
+    return this.getObservable('expand');
   }
-  public validateExpand(expandTest: string) {
-
+  public onGuess(): Observable<IGuess> {
+    return this.getObservable('guess');
   }
   public sendExpand(text: string) {
     this.socket.emit('expand', text);
@@ -61,6 +56,14 @@ export class RoomService {
     var regex = / ([:',;.!?])/g;
     e = e.replace(regex, "$1")
     return(e)*/
+  }
+  private getObservable(socketName: string): Observable<any> {
+    return new Observable((observer) => {
+      this.socket.on(socketName, (data) => {
+        console.log(socketName, data);
+        observer.next(data);
+      });
+    });
   }
 }
 

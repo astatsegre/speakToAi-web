@@ -20,7 +20,7 @@
   }
 }
 
-.expand {
+.room {
   display: grid;
   grid-template-columns: 10px 1fr 10px;
   grid-template-rows: 10px 1fr 10px;
@@ -29,7 +29,7 @@
                         ". . .";
 }
 
-.expand-chat {
+.expand {
   font-size: $font-size-l;
   grid-area: e;
   &__input {
@@ -43,4 +43,9 @@
     color: $color5;
     border-radius: 4px;
   }
+}
+
+.guess {
+  font-size: $font-size-l;
+  grid-area: e;
 }
